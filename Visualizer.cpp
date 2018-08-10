@@ -20,7 +20,7 @@ namespace ark {
     ***/
     void Visualizer::visualizeDepthMap_MaxDepth(const cv::Mat & depth_map, cv::Mat & output, float Max_depth)
     {
-        output = depth_map * 255 / Max_depth;
+        output = 255 - depth_map * 255 / Max_depth;
         output.convertTo(output, CV_8UC1);
         cv::applyColorMap(output, output, cv::COLORMAP_HOT);
     }
