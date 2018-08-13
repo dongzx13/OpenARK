@@ -61,7 +61,7 @@ int main() {
     int backgroundStyle = 1; // background style: 0=none, 1=ir, 2=depth, 3=normal
 
     // option flags
-    bool showHands = true, showPlanes = false, useSVM = true, useEdgeConn = false, showArea = false, playing = true;
+    bool showHands = true, showPlanes = false, useSVM = false, useEdgeConn = false, showArea = false, playing = true;
 
     // turn on the camera
     camera->beginCapture();

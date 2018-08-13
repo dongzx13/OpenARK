@@ -18,18 +18,18 @@ namespace ark {
     /***
     RGB depth map visualization
     ***/
-    void Visualizer::visualizeDepthMap_MaxDepth(const cv::Mat & depth_map, cv::Mat & output, float Max_depth)
+    void Visualizer::visualizeDepthMap(const cv::Mat & depth_map, cv::Mat & output, float max_depth)
     {
-        output = 255 - depth_map * 255 / Max_depth;
+        output = 255 - depth_map * 255 / max_depth;
         output.convertTo(output, CV_8UC1);
-        cv::applyColorMap(output, output, cv::COLORMAP_HOT);
+        cv::applyColorMap(output, output, cv::COLORMAP_JET);
     }
     
-    void Visualizer::visualizeXYZMap(const cv::Mat & xyzMap, cv::Mat & output, float Max_depth)
+    void Visualizer::visualizeXYZMap(const cv::Mat & xyzMap, cv::Mat & output, float max_depth)
     {
         cv::Mat depth;
         cv::extractChannel(xyzMap, depth, 2);
-        visualizeDepthMap_MaxDepth(depth,output,Max_depth);
+        visualizeDepthMap(depth, output, max_depth);
     }
 
     void Visualizer::visualizeNormalMap(const cv::Mat & normal_map, cv::Mat & output, 
