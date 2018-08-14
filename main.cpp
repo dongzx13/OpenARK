@@ -58,7 +58,7 @@ int main() {
     float currFPS; // current FPS
 
     int currFrame = 0; // current frame number (since launch/last pause)
-    int backgroundStyle = 1; // background style: 0=none, 1=ir, 2=depth, 3=normal
+    int backgroundStyle = 2; // background style: 0=none, 1=ir, 2=depth, 3=normal
 
     // option flags
     bool showHands = true, showPlanes = false, useSVM = false, useEdgeConn = false, showArea = false, playing = true;
@@ -118,7 +118,7 @@ int main() {
 
         else if (backgroundStyle == 2) {
             // depth map background
-            Visualizer::visualizeXYZMap(xyzMap, handVisual, 10);
+            Visualizer::visualizeXYZMap(xyzMap, handVisual, 4);
         }
 
         else if (backgroundStyle == 3) {
