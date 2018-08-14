@@ -279,7 +279,7 @@ namespace ark {
          * (used in flood fill during plane detection)
          * default: 0.06
          */
-        float planeFloodFillThreshold = 0.06f;
+        float planeFloodFillThreshold = 0.03f;
 
         /**
          * fraction of outlier points to remove from the plane before performing regression
