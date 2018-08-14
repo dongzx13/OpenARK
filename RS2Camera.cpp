@@ -16,6 +16,9 @@ namespace ark {
         badInputFlag = false;
         rs2::pipeline_profile profile = pipe->start(config);
 
+        auto sensor = profile.get_device().first<rs2::depth_sensor>();
+        sensor.set_option(rs2_option::RS2_OPTION_VISUAL_PRESET, rs2_rs400_visual_preset::RS2_RS400_VISUAL_PRESET_HAND);
+
         // get updated intrinsics
         rgbIntrinsics = new rs2_intrinsics();
         d2rExtrinsics = new rs2_extrinsics();
@@ -191,8 +194,10 @@ namespace ark {
         }
 
         ASSERT(this->depthIntrinsics, "FATAL: Camera has no depth stream!");
-        width = depthIntrinsics->width;
-        height = depthIntrinsics->height;
+        //width = depthIntrinsics->width;
+        //height = depthIntrinsics->height;
+        width = 848;
+        height = 480;
 
         config.enable_stream(RS2_STREAM_DEPTH, width, height, RS2_FORMAT_Z16);
         if (useRGBStream) config.enable_stream(RS2_STREAM_COLOR, width, height, RS2_FORMAT_BGR8);
