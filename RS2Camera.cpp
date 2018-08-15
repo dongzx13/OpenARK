@@ -74,6 +74,8 @@ namespace ark {
 
         try {
             data = pipe->wait_for_frames();
+            rs2::decimation_filter dec_filter;
+            decimation_filter.set_option(RS2_OPTION_FILTER_MAGNITUDE, 3);
 
             if (useRGBStream) {
                 rs2::frame color = data.first(RS2_STREAM_COLOR);
@@ -85,7 +87,11 @@ namespace ark {
             }
 
             rs2::frame depth = data.first(RS2_STREAM_DEPTH); 
-            project(depth, xyz_map);
+            rs2::frame filtered = depth;
+            // Note the concatenation of output/input frame to build up a chain
+            filtered = dec_filter.process(filtered);
+            
+            project(filtered, xyz_map);
         } catch (std::runtime_error e) {
             // try reconnecting
             badInputFlag = true;
